@@ -1,6 +1,10 @@
 name: Actions workflow
 
-on: [push]
+# on: [push]
+on:
+  push:
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 jobs:
   run-github-actions:
@@ -14,6 +18,7 @@ jobs:
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
+          echo $GITHUB_REF
           printenv
       - name: Checkout
         uses: actions/checkout@v1
